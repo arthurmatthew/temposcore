@@ -10,7 +10,7 @@ export default function App() {
       <p>
         {metronome.timeSignature[0]} / {metronome.timeSignature[1]}
       </p>
-      <button onClick={() => metronome.play()}>Play</button>
+      <button onClick={() => metronome.start()}>Play</button>
       <button onClick={() => metronome.stop()}>Stop</button>
     </div>
   )
