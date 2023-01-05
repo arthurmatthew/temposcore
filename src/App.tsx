@@ -1,17 +1,74 @@
+import { useState } from 'react'
 import Metronome from './lib/metronome'
 
 export default function App() {
-  const metronome = new Metronome()
+  const [metronome, setMetronome] = useState(new Metronome())
 
   return (
     <div>
       <h1>Metronome</h1>
-      <p>{metronome.beatsPerMinute} BPM</p>
+      <input
+        type="number"
+        value={metronome.beatsPerMinute}
+        onChange={(e) =>
+          setMetronome(
+            (metronome) =>
+              ({
+                ...metronome,
+                beatsPerMinute: parseInt(e.currentTarget.value),
+              } as Metronome)
+          )
+        }
+      />
       <p>
-        {metronome.timeSignature[0]} / {metronome.timeSignature[1]}
+        <input
+          type="number"
+          value={metronome.timeSignature[0]}
+          onChange={(e) =>
+            setMetronome(
+              (metronome) =>
+                ({
+                  ...metronome,
+                  timeSignature: [
+                    parseInt(e.currentTarget.value),
+                    metronome.timeSignature[1],
+                  ],
+                } as Metronome)
+            )
+          }
+        />
+        /
+        <input
+          type="number"
+          value={metronome.timeSignature[1]}
+          onChange={(e) =>
+            setMetronome(
+              (metronome) =>
+                ({
+                  ...metronome,
+                  timeSignature: [
+                    metronome.timeSignature[0],
+                    parseInt(e.currentTarget.value),
+                  ],
+                } as Metronome)
+            )
+          }
+        />
       </p>
-      <button onClick={() => metronome.start()}>Play</button>
-      <button onClick={() => metronome.stop()}>Stop</button>
+      <input
+        type="number"
+        value={metronome.subdivision}
+        onChange={(e) =>
+          setMetronome(
+            (metronome) =>
+              ({
+                ...metronome,
+                subdivision: parseInt(e.currentTarget.value),
+              } as Metronome)
+          )
+        }
+      />
+      <p>{metronome.beatLength} MS</p>
     </div>
   )
 }
