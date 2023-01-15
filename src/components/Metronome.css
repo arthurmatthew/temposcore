@@ -1,0 +1,14 @@
+.beats {
+  display: flex;
+  gap: 5px;
+}
+
+.beat {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+}
+
+.accented {
+  background-color: red;
+}
